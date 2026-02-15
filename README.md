@@ -22,8 +22,9 @@ Each topic is implemented as an independent project in its own folder, complete 
     *   *Concept*: Scaling write-heavy workloads and massive datasets by partitioning.
     *   *Simulation*: Consistent hashing router distributing distinct user keys across multiple shard nodes.
 
-*   **Consistent Hashing** (Upcoming)
-    *   *Concept*: Solving the "rebalancing" problem when adding/removing nodes in a sharded cluster.
+*   **[Consistent Hashing](./Consistent%20Hashing/)** ✅ (Completed)
+    *   *Concept*: Minimizing data movement when scaling a cluster (adding/removing nodes).
+    *   *Simulation*: Visualization of a Ring structure, Virtual Nodes, and efficient rebalancing stats (showing only ~25% movement).
 
 ### Phase 2: Reliability & Theory
 *   **CAP Theorem** (Upcoming)
