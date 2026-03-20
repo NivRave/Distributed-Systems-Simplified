@@ -13,45 +13,53 @@ A comprehensive deep dive into distributed systems concepts, implemented in Go. 
 
 Each topic is implemented as an independent project in its own folder, complete with a simulation and explanation.
 
-### Phase 1: Data Distribution & Scaling
-*   **[Read Replication](./Read%20Replication/)** ✅ (Completed)
-    *   *Concept*: Scaling read-heavy workloads using a Leader-Follower model.
-    *   *Simulation*: Leader DB writing updates that asynchronously propagate to follower nodes with replication lag.
+### **Phase 1: Data Distribution & Scaling (The Storage Foundation)**
 
-*   **[Sharding](./Sharding/)** ✅ (Completed)
-    *   *Concept*: Scaling write-heavy workloads and massive datasets by partitioning.
-    *   *Simulation*: Consistent hashing router distributing distinct user keys across multiple shard nodes.
+* **[Read Replication](./Read%20Replication/)** ✅
+    * *Concept*: Scaling read-heavy workloads using a Leader-Follower model.
+    * *Simulation*: Asynchronous data propagation with simulated replication lag.
+* **[Sharding](./Sharding/)** ✅
+    * *Concept*: Horizontal partitioning to scale write throughput and manage massive datasets.
+    * *Simulation*: A router distributing unique keys across independent physical shards.
+* **[Consistent Hashing](./Consistent%20Hashing/)** ✅
+    * *Concept*: Minimizing data rebalancing when nodes enter or leave a cluster.
+    * *Simulation*: High-efficiency Ring structure with Virtual Nodes showing ~25% movement on scale-up.
+* **[CAP Theorem](./CAP%20Theorem/)** ✅
+    * *Concept*: The mandatory trade-off between Consistency and Availability during a Network Partition.
+    * *Simulation*: Two-node cluster demonstrating "Social Media" (AP) vs. "Banking" (CP) behaviors.
 
-*   **[Consistent Hashing](./Consistent%20Hashing/)** ✅ (Completed)
-    *   *Concept*: Minimizing data movement when scaling a cluster (adding/removing nodes).
-    *   *Simulation*: Visualization of a Ring structure, Virtual Nodes, and efficient rebalancing stats (showing only ~25% movement).
+### **Phase 2: Performance & Traffic Management (The Gateway)**
 
-### Phase 2: Reliability & Theory
-*   **CAP Theorem** (Upcoming)
-    *   *Concept*: The fundamental trade-off between Consistency, Availability, and Partition Tolerance.
-*   **Distributed Transactions (2PC)** (Upcoming)
-    *   *Concept*: How to ensure an "all or nothing" operation across multiple physical nodes.
+* **Distributed Caching (TTL & LRU)** 🆕
+    * *Concept*: Reducing database pressure and latency by storing "hot" data in-memory.
+    * *Simulation*: Implementing expiration logic and measuring Cache Hit vs. Cache Miss latency.
+* **Load Balancing & Health Checks** 🆕
+    * *Concept*: Intelligent traffic routing and automatic failover for high availability.
+    * *Simulation*: A dynamic balancer that detects node crashes and reroutes traffic in real-time.
+* **Rate Limiting (Token Bucket)** 🆕
+    * *Concept*: Protecting system resources from abuse and ensuring fair usage (Noisy Neighbor problem).
+    * *Simulation*: Using Go channels and tickers to simulate a request "refill" bucket.
 
-### Phase 3: Coordination & Time
-*   **Network Time Protocol (NTP) & Drift** (Upcoming)
-    *   *Concept*: Why "Global Time" is an illusion in distributed systems.
-*   **Vector Clocks** (Upcoming)
-    *   *Concept*: Tracking causality—knowing which event happened before another without a master clock.
-*   **Distributed Consensus (Paxos/Raft)** (Upcoming)
-    *   *Concept*: How nodes agree on a single value (the "holy grail" of distributed logic).
+### **Phase 3: Service Resiliency (The Bodyguard)**
 
-### Phase 4: Big Data & Batch Processing
-*   **MapReduce** (Upcoming)
-    *   *Concept*: Building a Master-Worker architecture to process terabytes of data in parallel.
-*   **Hadoop vs. Spark vs. Storm** (Upcoming)
-    *   *Concept*: Exploring the evolution of the Big Data ecosystem.
-*   **Lambda Architecture** (Upcoming)
-    *   *Concept*: Combining batch and real-time speed layers for the best of both worlds.
+* **The Circuit Breaker** 🆕
+    * *Concept*: Preventing cascading failures by "tripping the fuse" when a downstream service is struggling.
+    * *Simulation*: A state machine (Closed/Open/Half-Open) protecting a fragile mock service.
+* **API Gateway & Middleware** 🆕
+    * *Concept*: Centralizing cross-cutting concerns like Authentication, Logging, and Request Routing.
+    * *Simulation*: A reverse-proxy that validates requests before they reach the internal service mesh.
+* **Idempotency & Retries** 🆕
+    * *Concept*: Ensuring distributed operations (like payments) are safe to retry without side effects.
+    * *Simulation*: Using Unique Request IDs to skip duplicate processing in a multi-service flow.
 
-### Phase 5: Messaging & Orchestration
-*   **Messaging Introduction (Pub/Sub)** (Upcoming)
-    *   *Concept*: Decoupling services using message queues.
-*   **Kafka** (Upcoming)
-    *   *Concept*: Building a persistent, append-only distributed log.
-*   **Zookeeper** (Upcoming)
-    *   *Concept*: Managing configuration and service discovery in a clustered environment.
+### **Phase 4: Asynchronous Coordination (The Event-Driven World)**
+
+* **Message Queues (Pub/Sub)** 🆕
+    * *Concept*: Decoupling services for non-blocking, high-performance background processing.
+    * *Simulation*: A Producer/Consumer model using Go channels to simulate an async job worker.
+* **The Saga Pattern** 🆕
+    * *Concept*: Managing long-running distributed transactions with compensating (Undo) logic.
+    * *Simulation*: Orchestrating a "Trip Booking" (Flight + Hotel) that rolls back if one part fails.
+* **Distributed Tracing (Context Propagation)** 🆕
+    * *Concept*: Visualizing the "Life of a Request" as it travels through multiple microservices.
+    * *Simulation*: Injecting and extracting Trace IDs using Go’s `context` package across service boundaries.
