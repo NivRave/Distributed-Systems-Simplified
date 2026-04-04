@@ -21,23 +21,19 @@ Each topic is implemented as an independent project in its own folder, complete 
 * **[Sharding](./Sharding/)** ✅
     * *Concept*: Horizontal partitioning to scale write throughput and manage massive datasets.
     * *Simulation*: A router distributing unique keys across independent physical shards.
-*   **[Consistent Hashing](./Consistent%20Hashing/)** (Completed)
-    *   *Concept*: Minimizing data movement when scaling a cluster (adding/removing nodes).
-    *   *Simulation*: Visualization of a Ring structure, Virtual Nodes, and efficient rebalancing stats (showing only ~25% movement).
-
-*   **[Distributed Caching](./Distributed%20Caching/)** (Completed)
-    *   *Concept*: Reducing database pressure and latency by storing "hot" data in-memory.
-    *   *Simulation*: Implementing LRU eviction and TTL expiration, comparing Cache Hit vs. Cache Miss latency.
+* **[Consistent Hashing](./Consistent%20Hashing/)** ✅
+    * *Concept*: Minimizing data movement when scaling a cluster (adding/removing nodes).
+    * *Simulation*: Visualization of a Ring structure, Virtual Nodes, and efficient rebalancing stats.
 * **[CAP Theorem](./CAP%20Theorem/)** ✅
-    * *Concept*: The mandatory trade-off between Consistency and Availability during a Network Partition.
-    * *Simulation*: Two-node cluster demonstrating "Social Media" (AP) vs. "Banking" (CP) behaviors.
+    * *Concept*: The fundamental trade-off: in a Partition (P), choose Consistency (CP) or Availability (AP).
+    * *Simulation*: A partitioned network where AP nodes accept writes while CP nodes reject them.
 
 ### **Phase 2: Performance & Traffic Management (The Gateway)**
 
-* **Distributed Caching (TTL & LRU)** 🆕
+* **[Distributed Caching](./Distributed%20Caching/)** ✅
     * *Concept*: Reducing database pressure and latency by storing "hot" data in-memory.
-    * *Simulation*: Implementing expiration logic and measuring Cache Hit vs. Cache Miss latency.
-* **Load Balancing & Health Checks** 🆕
+    * *Simulation*: Implementing LRU eviction and TTL expiration, comparing Cache Hit vs. Cache Miss latency.
+* **[Load Balancing & Health Checks](./Load%20Balancing/)** ✅
     * *Concept*: Intelligent traffic routing and automatic failover for high availability.
     * *Simulation*: A dynamic balancer that detects node crashes and reroutes traffic in real-time.
 * **Rate Limiting (Token Bucket)** 🆕
